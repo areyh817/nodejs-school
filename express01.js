@@ -1,10 +1,25 @@
-// 익스프레스 객체 생성
+var express = require('express');
+var http = require('http');
+// 익스프레스 시작
 var app = express();
+app.set('port', process.env.port || 4444);
 
-// 기본 포트를 app 객체에 속성으로 설정
-app.set('port', process.env.PORT||3000);
+// 미들웨어 사용
+app.use(function(req, res, next) {
+    console.log('첫 번째 미들웨어\n');
+    req.user = 'areyh';
+    req.next();
+    /*res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
+    res.end('<h1>서버에서 응답한 결과 : ' + req.user + '</h1>')*/
+});
 
-// Express 서버 시작
-http.createServer(app).listen(app.get('port'), function() {
-    console.log('express를 실행')
+// 두 번째 미들웨어 사용
+app.use(function(req, res, next){
+    console.log('두 번째 미들웨어')
+    res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
+    res.end('<h1>서버에서 응답한 결과 : ' + req.user + '</h1>')
+});
+
+var server = http.createServer(app).listen(app.get('port'), function(){
+    console.log('익스프레스 웹서버 실행 : ' + app.get('port'));
 })
