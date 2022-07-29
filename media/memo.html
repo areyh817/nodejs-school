@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>나의메모</h1>
+    <form method="post" action="/process/memo">
+        <table border="0">
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="writer"></td>
+            </tr>
+            <tr>
+                <td>작성일시</td>
+                <td><input type="text" name="datewrite"></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea name="contentwrite" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="저장">
+        <input type="submit" value="닫기" onclick="pop.close()">
+    </form>
+</body>
+</html>
